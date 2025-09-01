@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Proteogenomics-in-the-human-population</title>
+  <link rel="icon" href="logo.png">
+  <!-- 引入 DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 3em; }
+    h1 { margin-bottom: 1em; }
+    table { width: 90%; }
+    
+    table.dataTable thead th {
+      background-color: #348278 !important;
+      color: white;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>List of pQTL studies in the human population</h1>
+
+<table id="myTable" class="display">
+  <thead>
+    <tr id="table-head-row"></tr>
+  </thead>
+  <tbody id="table-body">
+  </tbody>
+</table>
+
+<!-- 引入 JQuery 和 DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
+<!-- 引入 PapaParse -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    fetch('proteome-gwas-full.csv')
+      .then(response => response.text())
+      .then(csvData => {
+        const parsedData = Papa.parse(csvData, { header: true });
+        const fields = parsedData.meta.fields;
+        const data = parsedData.data.filter(row => Object.values(row).some(cell => cell !== ""));
+
+        // 设置表头
+        fields.forEach(col => {
+          $('#table-head-row').append('<th>' + col + '</th>');
+        });
+
+        // 设置表格内容
+        data.forEach(row => {
+          let tr = '<tr>';
+          fields.forEach(col => {
+            tr += '<td>' + (row[col] || '') + '</td>';
+          });
+          tr += '</tr>';
+          $('#table-body').append(tr);
+        });
+
+        // 初始化 DataTable + 固定表头
+        $('#myTable').DataTable({
+          pageLength: 20,
+          lengthMenu: [10, 25, 50, 100, 200],
+          ordering: true,
+          searching: true,
+          fixedHeader: true // ⭐ 这里打开固定表头功能
+        });
+      })
+      .catch(error => {
+        console.error('Error loading CSV:', error);
+        $('#table-container').text('Failed to load table.');
+      });
+  });
+</script>
+
+</body>
+</html>
