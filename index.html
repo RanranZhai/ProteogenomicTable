@@ -40,7 +40,7 @@
 
 <script>
   $(document).ready(function() {
-    fetch('https://raw.githubusercontent.com/RanranZhai/proteome-tables/main/proteome-gwas-full.csv')
+    fetch('https://raw.githubusercontent.com/RanranZhai/ProteogenomicTable/main/proteome-gwas-full.csv')
       .then(response => response.text())
       .then(csvData => {
         const parsedData = Papa.parse(csvData, { header: true });
