@@ -68,7 +68,8 @@
           lengthMenu: [10, 25, 50, 100, 200],
           ordering: true,
           searching: true,
-          fixedHeader: true // ⭐ 这里打开固定表头功能
+          fixedHeader: true,
+          order: [[ 10, 'desc' ]] // ⭐ 这里打开固定表头功能
         });
       })
       .catch(error => {

@@ -1,4 +1,4 @@
-Cohort,Ancestry,cohort type,Sample size,Sample type,Proteomic platform,# of Proteins mesured,# of Proteins with cis-pQTL,# of Proteins with trans-pQTL,# of pQTL Associations (cis/trans),Publication Year,doi,Remarks
+Cohort,Ancestry,Description,Sample size,Sample type,Proteomic platform,# of Proteins mesured,# of Proteins with cis-pQTL,# of Proteins with trans-pQTL,# of pQTL Associations (cis/trans),Publication Year,DOI,Remarks
 Ottawa study,,obese subjects,577,plasma,MS,133,/,/,18,2020,10.1371/journal. pcbi.1007882,
 Ottawa study,,obese subjects,428,plasma,SOMAscan,1096,/,/,118,2020,10.1371/journal. pcbi.1007882,
 DiOGenes cohort,European,,481,plasma,MS,133,,,,2020,10.1371/journal. pcbi.1007882,
