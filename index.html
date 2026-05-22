@@ -66,7 +66,7 @@
 
 <script>
   $(document).ready(function() {
-    fetch('https://raw.githubusercontent.com/RanranZhai/ProteogenomicTable/main/proteome-gwas-full.csv')
+    fetch('https://raw.githubusercontent.com/RanranZhai/ProteogenomicTable/main/pQTL_table_full.csv')
       .then(response => response.text())
       .then(csvData => {
         const parsedData = Papa.parse(csvData, { header: true });
